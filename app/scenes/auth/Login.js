@@ -24,7 +24,7 @@ export default function Login(props) {
 
     async function onSubmit(state) {
         setLoading(true);
-        //console.log('llamando');
+        console.log('llamando');
 
         try {
             let response = await api.login(state);
@@ -35,10 +35,10 @@ export default function Login(props) {
             await handleLogin(response.data);
 
             setLoading(false);
-
+            console.log('vuelve del handlelogin');
             //check if username is null
             console.log(response.data.user.name);
-            let username = (response.user.name !== null);
+            let username = (response.data.user.name !== null);
             if (username) navigate('App');
             else navigation.replace('Username');
         } catch (error) {

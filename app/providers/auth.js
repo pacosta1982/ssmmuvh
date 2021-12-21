@@ -37,12 +37,14 @@ function AuthProvider(props) {
     const handleLogin = async (data) => {
         try{
             //STORE DATA
-            let {token, user} = data;
-            let data_ = [[USER_KEY, JSON.stringify(user)], [TOKEN_KEY, token]];
+            console.log('llega a handlelogin');
+            console.log(data);
+            let {access_token, user} = data;
+            let data_ = [[USER_KEY, JSON.stringify(user)], [TOKEN_KEY, access_token]];
             await AsyncStorage.multiSet(data_);
 
             //AXIOS AUTHORIZATION HEADER
-            axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+            axios.defaults.headers.common["Authorization"] = `Bearer ${data.access_token}`;
 
             //DISPATCH TO REDUCER
             dispatch({type: LOGGED_IN, user:data.user});
